@@ -1,0 +1,259 @@
+/* Minimalist Architecture Theme */
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --secondary-text: #888888;
+    --accent-color: #000000;
+    --spacing: 50px;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-color: #000000;
+        --text-color: #ffffff;
+        --secondary-text: #a0a0a0;
+        --accent-color: #ffffff;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.site-header {
+    padding: var(--spacing);
+    display: flex;
+    flex-direction: column; /* Stacker logo og meny i smal visning */
+    justify-content: flex-start;
+    align-items: stretch;
+    background-color: var(--bg-color);
+}
+
+@media (min-width: 1024px) {
+    .site-header {
+        width: 300px;
+        height: 100vh;
+        position: fixed;
+        padding: var(--spacing);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; 
+        background-color: var(--bg-color);
+    }
+
+    .portfolio-container {
+        margin-left: 300px;
+        width: calc(100% - 300px);
+        padding: var(--spacing);
+    }
+}
+
+/* Sidebar Navigation */
+/* Felles listestyling for både logo og meny */
+.logo ul, .site-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.logo a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-family: "Roboto Mono", "SF Mono", "Cascadia Mono", monospace; /* Rene, sans-serif monospace fonter */
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 0.4em; /* Gir tydeligere vertikale kolonner */
+    display: block;
+    text-transform: uppercase;
+    line-height: 1.0;
+    text-align: left;
+}
+
+.logo, .site-nav {
+    margin-top: -0.25em; /* Felles topp-justering for perfekt flukt */
+}
+
+.sub-logo {
+    display: block;
+    font-weight: 300;
+    font-size: 11px;
+    color: var(--secondary-text);
+}
+
+.site-nav {
+    display: flex;
+    flex-direction: column;
+    text-align: right; /* Speilvendt/Høyrejustert tekstblokk på mobil */
+    margin-top: 52px; /* To linjeskift (2 x 26px) mellom logo og meny */
+}
+
+@media (min-width: 1024px) {
+    .site-nav {
+        text-align: left;
+        margin-top: 0;
+    }
+    .site-nav ul {
+        margin-top: 20px;
+    }
+}
+
+.site-footer {
+    padding: var(--spacing);
+    text-align: right; /* Høyrestilt på mobil */
+}
+
+.site-nav .sidebar-copyright {
+    display: none; /* Skjuler gammel plassering i nav hvis den finnes */
+}
+
+.sidebar-copyright {
+    font-size: 13px;
+    color: var(--secondary-text);
+    font-family: Arial, sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: none; /* Tillater små bokstaver */
+    line-height: 1.1;
+}
+
+@media (min-width: 1024px) {
+    .site-footer {
+        position: fixed;
+        bottom: var(--spacing);
+        left: var(--spacing);
+        width: 300px;
+        padding: 0;
+        text-align: left; /* Venstrestilt i sidebar på desktop */
+    }
+}
+
+@media (min-width: 1024px) {
+    .site-nav {
+        flex-grow: 1;
+    }
+
+    .site-nav .nav-main {
+        margin-top: 52px; /* To linjeskift mellom logo og meny i sidebaren på desktop */
+    }
+
+    .site-nav .nav-contact {
+        margin-top: auto; /* Skyver kontaktinfo til bunnen */
+        flex-direction: column;
+        gap: 0;
+    }
+}
+
+.site-nav li {
+    display: block;
+    margin-bottom: 0;
+}
+
+.site-nav a {
+    display: block; /* Gjør boksen identisk med logoens lenke */
+    text-decoration: none;
+    color: var(--secondary-text);
+    font-family: "Roboto Mono", "SF Mono", "Cascadia Mono", monospace;
+    font-weight: 700;
+    font-size: 26px; /* Match logo font size */
+    letter-spacing: 0.4em; /* Match logo letter spacing */
+    transition: color 0.3s ease;
+    text-transform: uppercase;
+    line-height: 1.0; /* Må være identisk med logoen for horisontal flukt */
+}
+
+.site-nav a.contact-link {
+    text-transform: none; /* Beholder små bokstaver for e-post og tall */
+}
+
+.site-nav a.active, .site-nav a:hover {
+    color: var(--text-color);
+}
+
+/* Slideshow Styles */
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    height: calc(100vh - (var(--spacing) * 2));
+    overflow: hidden;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1.5s ease-in-out;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    /* Optimalisering for skarphet */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: auto;
+    transform: translateZ(0); /* Tvinger GPU-rendering for å unngå uskarphet */
+    backface-visibility: hidden;
+}
+
+.slide.active {
+    opacity: 1;
+}
+
+/* About Page Styles */
+.about-section {
+    max-width: 800px;
+}
+
+.about-image {
+    width: 100%;
+    height: auto;
+    margin-bottom: 40px;
+    display: block;
+}
+
+.about-intro {
+    margin-bottom: 60px;
+    font-size: 18px;
+    max-width: 600px;
+}
+
+.cv-section h2 {
+    font-family: "Roboto Mono", monospace;
+    font-size: 13px;
+    letter-spacing: 0.2em;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+.cv-list {
+    list-style: none;
+    margin-bottom: 40px;
+}
+
+.cv-item {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    margin-bottom: 10px;
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.cv-year {
+    color: var(--secondary-text);
+    font-family: "Roboto Mono", monospace;
+}

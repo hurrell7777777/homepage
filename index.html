@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portefølje | Arkitektur & Design</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="logo">
+            <ul>
+                <li><a href="#" onclick="showSection('arbeid'); return false;">STEFAN</a></li>
+                <li><a href="#" onclick="showSection('arbeid'); return false;">HURRELL</a></li>
+                <li><a href="#" onclick="showSection('arbeid'); return false;">ARKITEKT</a></li>
+                <li><a href="#" onclick="showSection('arbeid'); return false;">MNAL</a></li>
+            </ul>
+        </div>
+        <nav class="site-nav">
+            <ul class="nav-main">
+                <!-- <li><a href="#" onclick="showSection('arbeid'); return false;" class="active" id="nav-arbeid">ARBEID</a></li> -->
+                <li><a href="mailto:stefan@hurrell.no">KONTAKT</a></li>
+                <li><a href="https://www.instagram.com/stefanhurrell/">INSTAGRAM</a></li>
+                <!-- <li><a href="#" onclick="showSection('om'); return false;" id="nav-om">OM</a></li> -->
+            </ul>
+        </nav>
+    </header>
+
+    <main class="portfolio-container">
+        <div class="slideshow-container">
+            <div class="slide">
+                <img 
+                    src="AY6A1619.webp" 
+                    alt="Stefan Hurrell Arkitekt" 
+                    fetchpriority="high" 
+                    decoding="async"
+                >
+            </div>
+        </div>
+
+        <article class="about-section" style="display: none;">
+            <!-- Erstatt med ditt faktiske bilde -->
+            <img src="stefan_portrett.webp" alt="Stefan Hurrell" class="about-image">
+            
+            <div class="about-intro">
+                <p>Stefan Hurrell Arkitekt er et Oslo-basert arkitektkontor med fokus på minimalistisk og kontekstorientert arkitektur. Vi arbeider i skjæringspunktet mellom tradisjon og fornyelse, med en forkjærlighet for rene materialer og presise detaljer.</p>
+            </div>
+
+            <section class="cv-section">
+                <h2>Erfaring</h2>
+                <ul class="cv-list">
+                    <li class="cv-item"><span class="cv-year">2020—</span> <span>Eget kontor, Stefan Hurrell Arkitekt</span></li>
+                    <li class="cv-item"><span class="cv-year">2015—20</span> <span>Seniorarkitekt, [Tidligere kontor]</span></li>
+                </ul>
+
+                <h2>Utdanning</h2>
+                <ul class="cv-list">
+                    <li class="cv-item"><span class="cv-year">2014</span> <span>Master i Arkitektur, [Skole]</span></li>
+                </ul>
+            </section>
+        </article>
+    </main>
+
+    <footer class="site-footer">
+        <p class="sidebar-copyright">&copy; stefan hurrell</p>
+    </footer>
+
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSection(section) {
+            const slides = document.querySelector('.slideshow-container');
+            const about = document.querySelector('.about-section');
+            const navArbeid = document.getElementById('nav-arbeid');
+            const navOm = document.getElementById('nav-om');
+
+            if (section === 'arbeid') {
+                slides.style.display = 'block';
+                about.style.display = 'none';
+                navArbeid.classList.add('active');
+                navOm.classList.remove('active');
+            } else {
+                slides.style.display = 'none';
+                about.style.display = 'block';
+                navArbeid.classList.remove('active');
+                navOm.classList.add('active');
+            }
+        }
+
+        function showSlides() {
+            let slides = document.getElementsByClassName("slide");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].classList.remove("active");
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].classList.add("active");
+            // setTimeout(showSlides, 5000); // Karusellen er satt på pause. Fjern // for å aktivere igjen.
+        }
+    </script>
+
+</body>
+</html>
