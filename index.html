@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hurrell</title>
+    <title>hurrell - hjem</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
@@ -85,13 +85,15 @@
             if (section === 'arbeid') {
                 slides.style.display = 'block';
                 about.style.display = 'none';
-                navArbeid.classList.add('active');
-                navOm.classList.remove('active');
+                if (navArbeid) navArbeid.classList.add('active');
+                if (navOm) navOm.classList.remove('active');
+                document.title = "hurrell - hjem";
             } else {
                 slides.style.display = 'none';
                 about.style.display = 'block';
-                navArbeid.classList.remove('active');
-                navOm.classList.add('active');
+                if (navArbeid) navArbeid.classList.remove('active');
+                if (navOm) navOm.classList.add('active');
+                document.title = "hurrell - om";
             }
         }
 
